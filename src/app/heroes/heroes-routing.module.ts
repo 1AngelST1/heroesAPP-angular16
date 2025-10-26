@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes , RouterModule} from '@angular/router';
 
+import { Routes , RouterModule} from '@angular/router';
+import { ListadoComponent } from './pages/listado/listado.component';
 import { AgregarComponent } from './pages/agregar/agregar.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HeroeComponent } from './pages/heroe/heroe.component';
-import { ListadoComponent } from './pages/listado/listado.component';
-import { HomeComponent } from './pages/home/home.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
     children: [
       {
         path: 'listado',
@@ -34,16 +32,17 @@ const routes: Routes = [
       },
       {
         path: '**',
-        redirectTo: 'home'
+        redirectTo: 'listado'
       }
     ]
   }
 ];
 
 @NgModule({
+  declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild( routes )
+    RouterModule.forChild(routes)
   ],
   exports: [RouterModule]
 })
