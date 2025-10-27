@@ -12,13 +12,18 @@ export class HeroesService {
 
   private baseUrl: string = environment.baseUrl;
 
-  constructor( private http: HttpClient) { }
+  constructor( private http: HttpClient ) { }
 
-    getHeroes(): Observable<Heroe[]> {
-      return this.http.get<Heroe[]>(`${this.baseUrl}/heroes`);
-    }
-    
-    getHeroePorId( id: string ):Observable<Heroe> {
-    return this.http.get<Heroe>(`${this.baseUrl}/heroes/${ id }`);
-    }
+  getHeroes(): Observable<Heroe[]> {
+    return this.http.get<Heroe[]>(`${ this.baseUrl }/heroes`);
+  }
+
+  getHeroePorId( id: string ):Observable<Heroe> {
+    return this.http.get<Heroe>(`${ this.baseUrl }/heroes/${ id }`);
+  }
+
+  getSugerencias( termino: string ): Observable<Heroe[]> {
+    return this.http.get<Heroe[]>(`${ this.baseUrl }/heroes?q=${ termino }&_limit=20`);
+  }
+
 }
