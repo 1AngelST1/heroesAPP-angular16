@@ -28,8 +28,9 @@ export class LoginComponent{
   }
 
   ingresarSinLogin() {
-    this.authService.logout();
-    this.router.navigate(['./heroes']);
+    // Eliminar este método o comentarlo - no tiene sentido hacer logout y luego entrar
+    // Si quieres probar sin autenticación, comenta temporalmente el guard en app-routing.module.ts
+    console.warn('No se puede ingresar sin login cuando el guard está activo');
   }
 
 }

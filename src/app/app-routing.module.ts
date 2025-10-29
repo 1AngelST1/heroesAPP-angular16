@@ -1,35 +1,38 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { canActivateGuard, canMatchGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule ),
   },
   {
     path: 'heroes',
-    loadChildren: () => import('./heroes/heroes.module').then( m => m.HeroesModule)
+    loadChildren: () => import('./heroes/heroes.module').then( m => m.HeroesModule ),
+    canMatch: [ canMatchGuard ],
+    canActivate: [ canActivateGuard ]
   },
-  { path: '404',
+  {
+    path: '404',
     component: ErrorPageComponent
   },
-  { path: '**',
-    //component: ErrorPageComponent
+  {
+    path: '**',
+    // component: ErrorPageComponent
     redirectTo: '404'
   }
-];
+]
 
 
 @NgModule({
   imports: [
-    CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot( routes )
   ],
-  exports: [RouterModule]
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }
