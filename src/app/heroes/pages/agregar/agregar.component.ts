@@ -14,6 +14,8 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
   styles: [`
     img {
       width: 100%;
+      max-height: 600px;
+      object-fit: contain;
       border-radius: 5px;
     }
 
@@ -22,6 +24,8 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
       flex-direction: row;
       gap: 40px;
       padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .form-column {
@@ -50,6 +54,7 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
       flex-direction: row;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .spacer {
@@ -58,16 +63,75 @@ import { ConfirmarComponent } from '../../components/confirmar/confirmar.compone
 
     .image-column {
       flex: 1 1 50%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
     }
 
-    /* Responsive: pantallas pequeñas */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    h1 small {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    /* Responsive: tablets */
+    @media (max-width: 960px) {
+      .agregar-container {
+        gap: 30px;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      img {
+        max-height: 500px;
+      }
+    }
+
+    /* Responsive: móviles */
     @media (max-width: 600px) {
       .agregar-container {
         flex-direction: column;
+        padding: 10px;
+        gap: 20px;
       }
 
       .form-row {
         flex-direction: column;
+        gap: 10px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h1 small {
+        font-size: 1rem;
+        display: block;
+        margin-top: 5px;
+      }
+
+      .button-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button-row button {
+        width: 100%;
+      }
+
+      .spacer {
+        display: none;
+      }
+
+      img {
+        max-height: 400px;
       }
     }
   `]
@@ -139,8 +203,10 @@ export class AgregarComponent implements OnInit {
   borrarHeroe() {
 
     const dialog = this.dialog.open( ConfirmarComponent, {
-      width: '250px',
-      data: this.heroe
+      width: '400px',
+      data: this.heroe,
+      disableClose: true,
+      autoFocus: true
     });
 
     dialog.afterClosed().subscribe(

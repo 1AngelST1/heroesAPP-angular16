@@ -48,10 +48,14 @@
 
         <span class="spacer"></span>
 
-        <span>{{ auth.usuario }} </span>
+        <span style="display: flex; align-items: center; gap: 8px; margin-right: 15px;">
+          <mat-icon style="font-size: 20px;">person</mat-icon>
+          <strong>{{ auth.usuario }}</strong>
+        </span>
 
         <button mat-button
                 (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
             Logout
         </button>
     </mat-toolbar>

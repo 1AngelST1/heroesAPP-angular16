@@ -1,18 +1,91 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    
+    <!-- Header -->
+    <div class="login-header">
+      <h1>🦸‍♂️ Heroes App</h1>
+      <p>Inicia sesión para continuar</p>
+    </div>
 
-<mat-grid-list cols="1">
-    <mat-grid-tile>
-        <button mat-raised-button 
-                color="primary"
-                (click)="login()">
-            Ingresar
+    <!-- Formulario de Login -->
+    <form class="login-form" (ngSubmit)="login()">
+      
+      <!-- Campo Usuario -->
+      <mat-form-field appearance="outline">
+        <mat-label>Usuario</mat-label>
+        <input 
+          matInput 
+          type="text" 
+          placeholder="Ingresa tu nombre de usuario"
+          [(ngModel)]="usuario"
+          name="usuario"
+          autocomplete="username">
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+
+      <!-- Campo Email -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input 
+          matInput 
+          type="email" 
+          placeholder="Ingresa tu email"
+          [(ngModel)]="email"
+          name="email"
+          autocomplete="email">
+        <mat-icon matPrefix>email</mat-icon>
+      </mat-form-field>
+
+      <!-- Mensaje de Error -->
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Grupo de Botones -->
+      <div class="button-group">
+        <button 
+          mat-raised-button 
+          color="primary"
+          type="submit">
+          <mat-icon>login</mat-icon>
+          Ingresar con Validación
         </button>
 
+        <div class="divider-container">
+          <div class="divider-line"></div>
+          <span class="divider-text">o</span>
+          <div class="divider-line"></div>
+        </div>
 
-        <button mat-raised-button 
-                color="warn"
-                (click)="ingresarSinLogin()">
-            Ingresar sin login
+        <button 
+          mat-raised-button 
+          color="warn"
+          type="button"
+          (click)="ingresarSinLogin()">
+          <mat-icon>block</mat-icon>
+          Ingresar sin Validación
         </button>
-    </mat-grid-tile>
-</mat-grid-list>
+      </div>
 
+    </form>
+
+    <!-- Información de Credenciales -->
+    <mat-card style="margin-top: 20px; background-color: #f5f5f5; padding: 15px;">
+      <p style="margin: 0; font-size: 0.85rem; color: #666; text-align: center;">
+        <strong>💡 Usa tus credenciales registradas</strong><br>
+        O regístrate si aún no tienes cuenta
+
+        usuario: John Doe | Email: john.doe@gmail.com
+      </p>
+    </mat-card>
+
+    <!-- Link a Registro -->
+    <div style="text-align: center; margin-top: 20px; color: #666;">
+      ¿No tienes cuenta? 
+      <a routerLink="/auth/registro" style="color: #667eea; text-decoration: none; font-weight: 500;">
+        Regístrate aquí
+      </a>
+    </div>
+
+  </mat-card>
+</div>

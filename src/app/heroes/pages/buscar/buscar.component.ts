@@ -12,6 +12,8 @@ import { HeroesService } from '../../services/heroes.service';
       flex-direction: column;
       gap: 20px;
       padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .buscar-form {
@@ -19,9 +21,30 @@ import { HeroesService } from '../../services/heroes.service';
       flex-direction: column;
     }
 
+    .buscar-form h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
     mat-form-field {
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
+    }
+
+    /* Responsive: móviles */
+    @media (max-width: 600px) {
+      .buscar-container {
+        padding: 10px;
+        gap: 15px;
+      }
+
+      .buscar-form h3 {
+        font-size: 1.2rem;
+      }
+
+      mat-form-field {
+        max-width: 100%;
+      }
     }
   `]
 })

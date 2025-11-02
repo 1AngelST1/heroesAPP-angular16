@@ -25,13 +25,18 @@ export class AuthService {
 
   verificaAutenticacion(): Observable<boolean> {
 
-    if ( !localStorage.getItem('token') ) {
+    const token = localStorage.getItem('token');
+    
+    if ( !token ) {
+      console.log('❌ No hay token en localStorage');
       return of(false);
     }
 
-    return this.http.get<Auth>(`${ this.baseUrl }/usuarios/1`)
+    console.log('✅ Token encontrado, verificando con el servidor...', token);
+    return this.http.get<Auth>(`${ this.baseUrl }/usuarios/${ token }`)
               .pipe(
                 map( auth => {
+                  console.log('✅ Usuario autenticado:', auth.usuario);
                   this._auth = auth;
                   return true;
                 })
@@ -44,13 +49,17 @@ export class AuthService {
     return this.http.get<Auth>(`${ this.baseUrl }/usuarios/1`)
               .pipe(
                 tap( auth => this._auth = auth ),
-                tap( auth => localStorage.setItem('token', auth.id ) ),
+                tap( auth => {
+                  localStorage.setItem('token', auth.id );
+                  console.log('✅ Login exitoso, token guardado:', auth.id);
+                }),
               );
   }
 
   logout() {
     this._auth = undefined;
     localStorage.removeItem('token');
+    console.log('🚪 Logout - Token eliminado');
   }
 
 }

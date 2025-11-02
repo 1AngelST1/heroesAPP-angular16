@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
@@ -15,6 +16,7 @@ import { MaterialModule } from '../material/material.module';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     AuthRoutingModule,
     MaterialModule
   ]

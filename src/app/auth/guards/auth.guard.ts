@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 
 // Guard funcional para CanActivate (proteger rutas individuales)
@@ -13,6 +13,7 @@ export const canActivateGuard = (): Observable<boolean> => {
     .pipe(
       tap(estaAutenticado => {
         if (!estaAutenticado) {
+          console.log(' Acceso denegado - Redirigiendo a login');
           router.navigate(['./auth/login']);
         }
       })
@@ -28,6 +29,7 @@ export const canMatchGuard = (): Observable<boolean> => {
     .pipe(
       tap(estaAutenticado => {
         if (!estaAutenticado) {
+          console.log(' Módulo bloqueado - Redirigiendo a login');
           router.navigate(['./auth/login']);
         }
       })

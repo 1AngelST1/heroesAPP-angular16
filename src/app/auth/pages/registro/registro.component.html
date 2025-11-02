@@ -1,1 +1,78 @@
-<p>registro works!</p>
+<div class="registro-container">
+  <mat-card class="registro-card">
+    
+    <!-- Header -->
+    <div class="registro-header">
+      <h1>📝 Crear Cuenta</h1>
+      <p>Regístrate para acceder a Heroes App</p>
+    </div>
+
+    <!-- Formulario de Registro -->
+    <form class="registro-form" (ngSubmit)="registrar()">
+      
+      <!-- Campo Usuario -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de Usuario</mat-label>
+        <input 
+          matInput 
+          type="text" 
+          placeholder="Ej: John Doe"
+          [(ngModel)]="usuario"
+          name="usuario"
+          autocomplete="name">
+        <mat-icon matPrefix>person</mat-icon>
+      </mat-form-field>
+
+      <!-- Campo Email -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input 
+          matInput 
+          type="email" 
+          placeholder="tu.email@ejemplo.com"
+          [(ngModel)]="email"
+          name="email"
+          autocomplete="email">
+        <mat-icon matPrefix>email</mat-icon>
+      </mat-form-field>
+
+      <!-- Mensaje de Éxito -->
+      <div class="success-message" *ngIf="successMessage">
+        {{ successMessage }}
+      </div>
+
+      <!-- Mensaje de Error -->
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <!-- Grupo de Botones -->
+      <div class="button-group">
+        <button 
+          mat-raised-button 
+          color="primary"
+          type="submit">
+          <mat-icon>person_add</mat-icon>
+          Registrarse
+        </button>
+
+        <button 
+          mat-raised-button 
+          color="warn"
+          type="button"
+          (click)="cancelar()">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Link a Login -->
+    <div class="login-link">
+      ¿Ya tienes cuenta? 
+      <a routerLink="/auth/login">Inicia sesión aquí</a>
+    </div>
+
+  </mat-card>
+</div>

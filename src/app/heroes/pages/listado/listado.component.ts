@@ -15,33 +15,58 @@ import { Heroe } from '../../interfaces/heroes.interface';
     }
 
     .heroe-item {
-      flex: 0 0 20%;
-      min-width: 200px;
-      max-width: 300px;
+      flex: 0 0 calc(25% - 20px);
+      min-width: 250px;
+      max-width: 350px;
+      display: flex;
+      align-items: stretch;
+    }
+    
+    .heroe-item app-heroe-tarjeta {
+      width: 100%;
+      display: flex;
+    }
+
+    /* Responsive: pantallas muy grandes */
+    @media (min-width: 1920px) {
+      .heroe-item {
+        flex: 0 0 calc(20% - 20px);
+      }
     }
 
     /* Responsive: pantallas grandes */
-    @media (min-width: 1280px) {
+    @media (min-width: 1280px) and (max-width: 1919px) {
       .heroe-item {
-        flex: 0 0 15%;
+        flex: 0 0 calc(25% - 20px);
       }
     }
 
-    /* Responsive: pantallas medianas */
-    @media (max-width: 960px) {
+    /* Responsive: pantallas medianas-grandes */
+    @media (min-width: 960px) and (max-width: 1279px) {
       .heroe-item {
-        flex: 0 0 30%;
+        flex: 0 0 calc(33.333% - 20px);
       }
     }
 
-    /* Responsive: pantallas pequeñas */
-    @media (max-width: 600px) {
+    /* Responsive: tablets */
+    @media (min-width: 600px) and (max-width: 959px) {
+      .heroe-item {
+        flex: 0 0 calc(50% - 20px);
+        min-width: 200px;
+      }
+    }
+
+    /* Responsive: móviles */
+    @media (max-width: 599px) {
       .heroes-container {
-        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
       }
+
       .heroe-item {
         flex: 0 0 100%;
         max-width: 100%;
+        min-width: unset;
       }
     }
   `]

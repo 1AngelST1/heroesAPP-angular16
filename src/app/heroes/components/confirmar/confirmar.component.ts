@@ -6,8 +6,21 @@ import { Heroe } from '../../interfaces/heroes.interface';
 @Component({
   selector: 'app-confirmar',
   templateUrl: './confirmar.component.html',
-  styles: [
-  ]
+  styles: [`
+    mat-dialog-content {
+      padding: 20px 0;
+    }
+
+    mat-dialog-content p {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    mat-dialog-actions {
+      padding: 10px 0;
+      gap: 10px;
+    }
+  `]
 })
 export class ConfirmarComponent implements OnInit {
 
